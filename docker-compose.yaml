@@ -1,0 +1,53 @@
+---
+version: '2'
+services:
+  redis-pp2-cluster-1:
+    image: slamba/redis:1.0.47
+    ports:
+    - 6379
+    - 16379
+    environment:
+      CONSULHOST: consul
+      DEPLOYMENT: 'true'
+      REDIS_MASTER: 'true'
+  redis-pp2-cluster-2:
+    image: slamba/redis:1.0.47
+    ports:
+    - 6379
+    - 16379
+    environment:
+      CONSULHOST: consul
+      DEPLOYMENT: 'true'
+  redis-pp2-cluster-3:
+    image: slamba/redis:1.0.47
+    ports:
+    - 6379
+    - 16379
+    environment:
+      CONSULHOST: consul
+      DEPLOYMENT: 'true'
+  redis-pp2-cluster-4:
+    image: slamba/redis:1.0.47
+    ports:
+    - 6379
+    - 16379
+    environment:
+      CONSULHOST: consul
+      DEPLOYMENT: 'true'
+  redis-pp2-cluster-5:
+    image: slamba/redis:1.0.47
+    ports:
+    - 6379
+    - 16379
+    environment:
+      CONSULHOST: consul
+      DEPLOYMENT: 'true'
+  redis-pp2-cluster-6:
+    image: slamba/redis:1.0.47
+    ports:
+    - 6379
+    - 16379
+    environment:
+      CONSULHOST: consul
+      DEPLOYMENT: 'true'
+      REDIS_SIX: 'true'
