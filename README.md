@@ -225,7 +225,7 @@ Of-course, change it as per your needs like Repo-Name or Tracker ids.
 
 #!/bin/bash
 
-URL="http://int-pres-consul-ui.pp2.williamhill.plc/v1/health/service/whc-drs01-redis-pp2-cluster-"
+URL="http://consul/v1/health/service/redis-cluster-"
 echo "-------------------------------------------------------------------------"
 printf "| %10s | %20s | %15s | %15s | \n" "Container" "Container-IP" "Port-6379" "Port-16379"
 echo "-------------------------------------------------------------------------"
