@@ -2,6 +2,16 @@
   <img src="img/redis.png" width="485" > </image>
 </p>
 
+# Redis Bus-Port offset issue and Mesos Mess
+Redis always assign bus-port with an offset of 10000 as per its design.
+
+> The command port and cluster bus port offset is fixed and is always 10000.
+
+Source [Redis-Cluster-101](https://redis.io/topics/cluster-tutorial)
+
+On the top, we have internal cloud with Mesos Architecture i.e. ZooKeeper/Marathon/Mesos-Master-Slave.
+Mesos always maps some random port to the containers and it creates a problem for Redis-Cluster.
+We can not hard-code the ports and can-not control the Mesos. So during redis-cluster creation, we always fails
 
 # Redis Cluster Setup
 
