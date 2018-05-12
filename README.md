@@ -2,37 +2,35 @@
   <img src="img/redis.png" width="485" > </image>
 </p>
 
-# Redis Bus-Port offset issue and Mesos Mess
-Redis always assign bus-port with an offset of 10000 as per its design.
 
-> The command port and cluster bus port offset is fixed and is always 10000.
-
-Source [Redis-Cluster-101](https://redis.io/topics/cluster-tutorial)
-
-On the top, we have internal cloud with Mesos Architecture i.e. ZooKeeper/Marathon/Mesos-Master-Slave.
-Mesos always maps some random port to the containers and it creates a problem for Redis-Cluster.
-We can not hard-code the ports and can-not control the Mesos. So during redis-cluster creation, we always fails
-
-# Redis Cluster Setup
+# Redis Cluster Setup for PP[1-2-3] Environment
+The following infrastructure footprint is an initial estimate for PP1, PP2 and PP3 environments. Instance count and sizing may need to be refined based on testing outcomes.
 
 3 x Redis Master instances (3 shards/partitions) per environment.
 
 4 x Redis Slave instances per environment.
 
+## Architecture
+
+<p align="center">
+  <img src="img/redis-ppx.png" width="885" > </image>
+</p>
 
 ## Pre-requisites
 1. Docker
 2. GIT
 3. Docker-Compose
 4. Linux-Networking
+5. William-Hill-Cloud
 6. Mesos
 7. Consul
 
 ## Assumptions
 1. Know how Redis-Cluster works.
+2. Know how William-Hill-Cloud Product creation works.
 3. Know Mesos/Consul theoritically at-least.
 
-## Mesos-Issue
+## William-Hill-Cloud-Issue
 Mesos assigns/maps random slave host ports dynamically to containers running in the Mesos-Slave-Hosts which is not in control of configuration.
 So, hard-coding of ports is out of question.
 
@@ -42,7 +40,7 @@ On the top, as per Redis-Design, Redis have cluster-bus-port which is always an 
 
 Source [Redis-Cluster-101](https://redis.io/topics/cluster-tutorial)
 
-### What does it mean
+### What does it mean as per WHC context
 For Example, DevOps exposes 2 ports on containers using docker-compose file i.e. 6379 and 16379 which are redis-base-port and redis-cluster-bus-port respectively.
 But Mesos, assigns random port while mapping the Host Ports to Conatiner Ports. For example sake, lets assume these ports are 31678 and 31679. So far so good.
 
@@ -194,8 +192,7 @@ M: a4d0e58ed9d18a9ba11003afbed0542e57f7a372 10.193.78.95:31632
 ```
 20:M 20 Apr 08:17:44.924 # configEpoch set to 5 via CLUSTER SET-CONFIG-EPOCH
 20:M 20 Apr 08:17:44.974 . Connecting with Node 323d78c76a74c5e7f9685eaa3b1a7a8f2804dce6 at 10.193.78.95:31511
-20:M 20 Apr 08:17:44.975 . I/O error reading from node link: No route to host
-20:M 20 Apr 08:17:45.075 - 1 clients connected (0 slaves), 1447384 bytes in use
+20:M 20 Apr 08:17:45.075 - 1 clients connected (1 slaves), 1447384 bytes in use
 ```
 
 
@@ -235,7 +232,7 @@ Of-course, change it as per your needs like Repo-Name or Tracker ids.
 
 #!/bin/bash
 
-URL="http://consul/v1/health/service/redis-cluster-"
+URL="http://int-pres-consul-ui.pp2.williamhill.plc/v1/health/service/whc-drs01-redis-pp2-cluster-"
 echo "-------------------------------------------------------------------------"
 printf "| %10s | %20s | %15s | %15s | \n" "Container" "Container-IP" "Port-6379" "Port-16379"
 echo "-------------------------------------------------------------------------"
@@ -266,8 +263,4 @@ echo "-------------------------------------------------------------------------"
 ```
 
 ## Support
-
-<p align="center">
-  <img src="img/buy_me_a_coffee.png" width="215" > </image>
-</p>
-
+<a href="https://www.buymeacoffee.com/starlord" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a><a href="https://www.buymeacoffee.com/starlord" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a><a href="https://www.buymeacoffee.com/starlord" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a><a href="https://www.buymeacoffee.com/starlord" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
