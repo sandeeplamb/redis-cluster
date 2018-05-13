@@ -13,7 +13,7 @@ The following infrastructure footprint is an initial estimate for PP1, PP2 and P
 ## Architecture
 
 <p align="center">
-  <img src="img/redis-ppx.png" width="885" > </image>
+  <img src="img/arch.png" width="885" > </image>
 </p>
 
 ## Pre-requisites
