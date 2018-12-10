@@ -4,7 +4,7 @@
 
 
 # Redis Cluster Setup for your Environment
-The following infrastructure footprint is an initial estimate for PP1, PP2 and PP3 environments. Instance count and sizing may need to be refined based on testing outcomes.
+The following infrastructure footprint is an initial estimate for your environments. Instance count and sizing may need to be refined based on testing outcomes.
 
 3 x Redis Master instances (3 shards/partitions) per environment.
 
