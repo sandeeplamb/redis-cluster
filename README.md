@@ -3,7 +3,7 @@
 </p>
 
 
-# Redis Cluster Setup for PP[1-2-3] Environment
+# Redis Cluster Setup for your Environment
 The following infrastructure footprint is an initial estimate for PP1, PP2 and PP3 environments. Instance count and sizing may need to be refined based on testing outcomes.
 
 3 x Redis Master instances (3 shards/partitions) per environment.
@@ -21,16 +21,16 @@ The following infrastructure footprint is an initial estimate for PP1, PP2 and P
 2. GIT
 3. Docker-Compose
 4. Linux-Networking
-5. William-Hill-Cloud
+5. Cloud
 6. Mesos
 7. Consul
 
 ## Assumptions
 1. Know how Redis-Cluster works.
-2. Know how William-Hill-Cloud Product creation works.
+2. Know how Cloud Product creation works.
 3. Know Mesos/Consul theoritically at-least.
 
-## William-Hill-Cloud-Issue
+## Cloud-Issue
 Mesos assigns/maps random slave host ports dynamically to containers running in the Mesos-Slave-Hosts which is not in control of configuration.
 So, hard-coding of ports is out of question.
 
@@ -232,7 +232,7 @@ Of-course, change it as per your needs like Repo-Name or Tracker ids.
 
 #!/bin/bash
 
-URL="http://int-pres-consul-ui.pp2.williamhill.plc/v1/health/service/whc-drs01-redis-pp2-cluster-"
+URL="http://......."
 echo "-------------------------------------------------------------------------"
 printf "| %10s | %20s | %15s | %15s | \n" "Container" "Container-IP" "Port-6379" "Port-16379"
 echo "-------------------------------------------------------------------------"
